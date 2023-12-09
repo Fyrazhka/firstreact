@@ -1,12 +1,18 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Route, Routes} from "react-router-dom";
 import About from "../pages/About";
 import Posts from "../pages/Posts";
 import PostIdPage from "../pages/PostIdPage";
 import {publicRoutes,privateRoutes} from "../router";
+import {AuthContext} from "../context";
+import Loader from "./UI/Loader/Loader";
 
 const AppRouter = () => {
-    const isAuth=true;
+    const {isAuth,isLoading} =useContext(AuthContext)
+
+    if(isLoading) {
+        return <Loader/>
+    }
     return (
         isAuth
         ?  <Routes>
